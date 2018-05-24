@@ -27,7 +27,7 @@ function* getProfiles(payload){
 }
 
 function* loadCharacters(){
-    var characters = JSON.parse(localStorage.getItem('characters'));
+    var characters = JSON.parse(localStorage.getItem('characters')) || [];
     yield put(actions.loadedCharacters(characters));
 }
 
