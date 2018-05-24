@@ -6,7 +6,7 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(() => resolve(true), ms))
 } 
 
-function* getProfile(payload){
+function* getProfile(payload) {
     const { region, realm, character } = payload;
     try {
         const res = yield RaiderIoService.GetProfile(region, realm, character);
@@ -16,22 +16,23 @@ function* getProfile(payload){
     }
 }
 
-function* getProfiles(payload){
+function* getProfiles(payload) {
     const characters = payload;
     try{
-        const res = RaiderIoService.GetProfiles(characters);
-        yield put(actions.profilesDone(res.data));
+        const res = yield RaiderIoService.GetProfiles(characters);
+        console.log('getprofiles', res.data.profiles);
+        yield put(actions.profilesDone(res.data.profiles));
     } catch(e){
         yield put(actions.profilesError(characters, e.message));
     }
 }
 
-function* loadCharacters(){
+function* loadCharacters() {
     var characters = JSON.parse(localStorage.getItem('characters')) || [];
     yield put(actions.loadedCharacters(characters));
 }
 
-function* actionFilter(action){
+function* actionFilter(action) {
     switch(action.type){
         case actions.RAIDERIO_PROFILE_FETCH:
         case actions.CHARACTER_ADD:
@@ -46,7 +47,6 @@ function* actionFilter(action){
     }
 }
 
-export default function* root(){
-    console.log('root');
+export default function* root() {
     yield takeEvery(Object.keys(actions).map(key => actions[key]), actionFilter);
 }

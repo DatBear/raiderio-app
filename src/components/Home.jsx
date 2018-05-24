@@ -11,24 +11,34 @@ class Home extends React.Component{
     componentDidMount(){
         this.props.loadCharacters();
         console.log(this.props.raiderIo);
-        this.props.fetchProfile('us','kirintor','dennycrane');
+        //this.props.fetchProfile('us','kirintor','dennycrane');
     }
 
+    // {this.props.raiderIo.profiles && this.props.raiderIo.profiles.map((profile, i) => 
+    //     <DungeonList key={i} dungeons={profile.data.mythic_plus_best_runs}
+    //         dungeonOrder={this.props.raiderIo.dungeonOrder} 
+    //         characters={this.props.raiderIo.characters} />)}
     render(){
         return(
             <div className="container-fluid">
                 <div className="row">
                     <CharacterList
-                        characters={this.props.characters}
+                        characters={this.props.raiderIo.characters}
                         addCharacter={this.props.addCharacter}
                         removeCharacter={this.props.removeCharacter}
                         saveCharacters={this.props.saveCharacters}
                         loadCharacters={this.props.loadCharacters}
                         refreshCharacters={this.props.loadCharacters}
+                        deleteAllCharacters={this.props.deleteAllCharacters}
                     />
                 </div>
                 <div className="row">
-                    {this.props.raiderIo.profiles && this.props.raiderIo.profiles.map((profile, i) => <DungeonList key={i} dungeons={profile.data.mythic_plus_best_runs} />)}
+                    <DungeonList
+                        profiles={this.props.raiderIo.profiles}
+                        getDungeons={(profile) => profile.mythic_plus_best_runs}
+                        dungeonOrder={this.props.raiderIo.dungeonOrder}
+                        characters={this.props.raiderIo.characters}
+                    />
                 </div>
             </div>
         );

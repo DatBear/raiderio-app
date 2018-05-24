@@ -37,6 +37,7 @@ export default class CharacterList extends React.Component{
                 <div className="col-sm-12" style={{marginBottom:10}}>
                     <button className="btn btn-sm btn-success" onClick={this.props.saveCharacters.bind(this)}>Save</button>
                     <button className="btn btn-sm btn-info" style={{marginLeft:10}} onClick={this.props.loadCharacters.bind(this)}>Load</button>
+                    <button className="btn btn-sm btn-danger" style={{marginLeft:10}} onClick={this.props.deleteAllCharacters.bind(this)}>Delete All</button>
                 </div>
                 </div>
                 <div className="row characters-header">

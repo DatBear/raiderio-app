@@ -12,5 +12,5 @@ export const profileDone = (region, realm, character, data) => ({type: RAIDERIO_
 export const profileError = (region, realm, character, error) => ({type: RAIDERIO_PROFILE_ERROR, payload: { region, realm, character, error }});
 
 export const fetchProfiles = (characters) => ({type: RAIDERIO_PROFILES_FETCH, payload: {characters} });
-export const profilesDone = (characters, data) => ({type: RAIDERIO_PROFILES_DONE, payload: { characters, data }});
+export const profilesDone = (data) => ({type: RAIDERIO_PROFILES_DONE, payload: data });
 export const profilesError = (characters, error) => ({type: RAIDERIO_PROFILES_ERROR, payload: { characters, error }});

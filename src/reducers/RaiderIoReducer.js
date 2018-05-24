@@ -4,6 +4,21 @@ import CharacterReducer from './CharacterReducer';
 const defaultState = {
     profiles: [],
     characters: [],
+    dungeonOrder: [
+        'ARC',
+        'BRH',
+        'COEN',
+        'COS',
+        'DHT',
+        'EOA',
+        'HOV',
+        'LOWR',
+        'MOS',
+        'NL',
+        'SEAT',
+        'UPPR',
+        'VOTW'
+    ]
 }
 
 export default (state = defaultState, action) => {
@@ -11,7 +26,7 @@ export default (state = defaultState, action) => {
     var characters = CharacterReducer(state.characters, action);
 
     switch(type){
-        case raiderIo.RAIDERIO_PROFILE_DONE:{
+        case raiderIo.RAIDERIO_PROFILE_DONE: {
             const {region, realm, character, data} = action.payload;
             console.log('RAIDERIO_PROFILE_DONE payload:', action.payload);
             state = {
@@ -21,8 +36,9 @@ export default (state = defaultState, action) => {
             return state;
             break;
         }
-        case raiderIo.RAIDERIO_PROFILES_DONE:{
-            
+        case raiderIo.RAIDERIO_PROFILES_DONE: {
+            console.log('PROFILES_DONE', action.payload);
+            state.profiles = action.payload;
         }
         default:
             break;

@@ -8,6 +8,7 @@ export class RaiderIoService {
     }
 
     GetProfiles(characters){
+        console.log('characters', characters);
         return axios.post(`${apiBase}/characters/profiles`, {characters});
     }
 

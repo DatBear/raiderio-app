@@ -5,5 +5,4 @@ import CharacterReducer from './CharacterReducer';
 
 export default combineReducers({
     raiderIo: RaiderIoReducer,
-    characters: CharacterReducer,
 });
