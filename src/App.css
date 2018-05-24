@@ -1,0 +1,41 @@
+.characters-header div{
+  color:grey;
+  font-variant: small-caps;
+}
+
+.character{
+  margin-top:10px;
+  font-variant: small-caps;
+}
+
+.new-character{
+  margin-top:10px;
+}
+
+.text-gold {
+  color: #ffcf40 !important;
+}
+
+.dungeon-list-container{
+  margin-top:20px;
+}
+
+.dungeon>td>img{
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0 10px 0 0;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+.stars{
+  font-size: 6px; 
+  position: relative; 
+  left: 4px; 
+  top: -0.4rem;
+}
+
+.fs6{
+  font-size: 6px;
+}
