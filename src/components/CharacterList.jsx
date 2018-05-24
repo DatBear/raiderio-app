@@ -45,7 +45,7 @@ export default class CharacterList extends React.Component{
                     <div className="col-sm-4">Realm</div>
                     <div className="col-sm-1"></div>
                 </div>
-                {this.props.characters.map((char, i) => (
+                {this.props.characters && this.props.characters.map((char, i) => (
                     <Character key={i} region={char.region} realm={char.realm} name={char.name}
                     removeCharacter={this.props.removeCharacter} />
                 ))}
