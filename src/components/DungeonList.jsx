@@ -21,13 +21,12 @@ export default class DungeonList extends React.Component {
     }
 
     render(){
-        console.log('dungeonlist');
         var dungeonOrder = this.props.dungeonOrder;
         var dungeons = this.props.profiles && this.props.profiles.sort(this.characterSort.bind(this)).map(this.props.getDungeons);
         var sortedProfiles = this.props.profiles && this.props.profiles.sort(this.characterSort.bind(this))
-        console.log('dungeonOrder', dungeonOrder);
-        console.log('profiles', sortedProfiles);
-        console.log('dungeons', dungeons);
+        //console.log('dungeonOrder', dungeonOrder);
+        //console.log('profiles', sortedProfiles);
+        //console.log('dungeons', dungeons);
         return(
             <div className="col-sm-6 dungeon-list-container">
                 <table className="table table-striped table-hover table-condensed table-bordered">

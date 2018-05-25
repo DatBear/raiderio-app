@@ -21,6 +21,16 @@ const defaultState = {
     ]
 }
 
+function getCharacter(state, {region, realm, character}){
+    var character = state.characters.find(x => x.region === region && x.realm === realm && x.name === character);
+    return character || null;
+}
+
+function getProfile(state, {region, realm, character}){
+    var profile = state.profiles.find(x => x.character.region === region && x.character.realm === realm && x.character.name === character);
+    return profile || null;
+}
+
 export default (state = defaultState, action) => {
     let { type, payload } = action;
     var characters = CharacterReducer(state.characters, action);
@@ -28,7 +38,6 @@ export default (state = defaultState, action) => {
     switch(type){
         case raiderIo.RAIDERIO_PROFILE_DONE: {
             const {region, realm, character, data} = action.payload;
-            console.log('RAIDERIO_PROFILE_DONE payload:', action.payload);
             state = {
                 ...state, 
                 profiles: state.profiles.filter(p => !(p.region === region && p.realm === realm && p.character === character)).concat(action.payload.data)
@@ -37,8 +46,19 @@ export default (state = defaultState, action) => {
             break;
         }
         case raiderIo.RAIDERIO_PROFILES_DONE: {
-            console.log('PROFILES_DONE', action.payload);
             state.profiles = action.payload;
+        }
+        case raiderIo.RAIDERIO_SORT_BY_CHAR:{
+            const {region, realm, character} = action.payload;
+            const profile = getProfile(state, action.payload);
+            if(profile != null){
+                const dungeons = profile.mythic_plus_best_runs;
+                state.dungeonOrder = state.dungeonOrder.concat().sort((a, b) => {
+                    var dA = dungeons.find(d => d.short_name === a.short_name);
+                    var dB = dungeons.find(d => d.short_name === b.short_name);
+                    return (dA.score || 0) > (dB.score || 0) ? -1 : 1;
+                });
+            }
         }
         default:
             break;
