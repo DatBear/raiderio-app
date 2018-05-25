@@ -24,7 +24,7 @@ export default class Character extends React.Component{
                     {this.props.realm}
                 </div>
                 <div className="col-sm-1">
-                    <button className="btn btn-sm btn-danger" onClick={this.removeCharacter.bind(this)} >-</button>
+                    <button className="btn btn-sm btn-danger" onClick={this.removeCharacter.bind(this)}><i class="fas fa-user-minus"></i></button>
                 </div>
             </div>
         );
