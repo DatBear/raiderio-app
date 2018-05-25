@@ -35,9 +35,9 @@ export default class CharacterList extends React.Component{
                 <h3>Characters</h3>
                 <div className="row">
                 <div className="col-sm-12" style={{marginBottom:10}}>
-                    <button className="btn btn-sm btn-success" onClick={this.props.saveCharacters.bind(this)}><i class="far fa-save"></i></button>
-                    <button className="btn btn-sm btn-info" style={{marginLeft:10}} onClick={this.props.loadCharacters.bind(this)}><i class="fas fa-spinner"></i></button>
-                    <button className="btn btn-sm btn-danger" style={{marginLeft:10}} onClick={this.props.deleteAllCharacters.bind(this)}><i class="fas fa-user-minus"></i> All</button>
+                    <button className="btn btn-sm btn-success" onClick={this.props.saveCharacters.bind(this)}><i className="far fa-save"></i></button>
+                    <button className="btn btn-sm btn-info" style={{marginLeft:10}} onClick={this.props.loadCharacters.bind(this)}><i className="fas fa-spinner"></i></button>
+                    <button className="btn btn-sm btn-danger" style={{marginLeft:10}} onClick={this.props.deleteAllCharacters.bind(this)}><i className="fas fa-user-minus"></i> All</button>
                 </div>
                 </div>
                 <div className="row characters-header">
@@ -64,7 +64,7 @@ export default class CharacterList extends React.Component{
                         <input className="form-control form-control-sm" placeholder="Realm" value={this.state.newRealm} onChange={this.handleInputChange('newRealm')} />
                     </div>
                     <div className="col-sm-1">
-                        <button className="btn btn-sm btn-success" onClick={this.addCharacter.bind(this)}><i class="fas fa-user-plus"></i></button>
+                        <button className="btn btn-sm btn-success" onClick={this.addCharacter.bind(this)}><i className="fas fa-user-plus"></i></button>
                     </div>
                 </div>
             </div>

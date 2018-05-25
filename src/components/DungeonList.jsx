@@ -1,7 +1,9 @@
 import React from 'react';
 
+import CharacterHeader from './CharacterHeader';
 import DungeonRow from './DungeonRow';
 import DungeonScore from './DungeonScore';
+
 
 export default class DungeonList extends React.Component {
     characterSortOrder({region, realm, name}){
@@ -14,7 +16,12 @@ export default class DungeonList extends React.Component {
         return this.characterSortOrder(a.character) < this.characterSortOrder(b.character) ? -1 : 1;
     }
 
+    sortByCharacter(char){
+        this.props.sortByChar(char.region, char.realm, char.name);
+    }
+
     render(){
+        console.log('dungeonlist');
         var dungeonOrder = this.props.dungeonOrder;
         var dungeons = this.props.profiles && this.props.profiles.sort(this.characterSort.bind(this)).map(this.props.getDungeons);
         var sortedProfiles = this.props.profiles && this.props.profiles.sort(this.characterSort.bind(this))
@@ -27,12 +34,12 @@ export default class DungeonList extends React.Component {
                     <thead>
                         <tr>
                             <th>Dungeon</th>
-                            {sortedProfiles.map((profile, i) => <th key={i}>{profile.name}<br/>{profile.realm}</th>)}
+                            {sortedProfiles.map((profile, i) => <CharacterHeader key={i} profile={profile} sortByChar={this.props.sortByChar} />)}
                         </tr>
                     </thead>
                     <tbody>
                         {dungeonOrder.map((dungeon, dIdx) => (
-                            <DungeonRow key={dIdx} dungeon={dungeon}>
+                            <DungeonRow key={dIdx} dungeon={dungeon} sortByDungeon={this.props.sortByDungeon}>
                                 {dungeons.map((dungeonList, dlIdx) => (
                                     dungeonList.filter(d => d.short_name == dungeon.short_name).map((dungeonScore, dSIdx) => (
                                         <DungeonScore key={dSIdx} dungeon={dungeonScore}/>

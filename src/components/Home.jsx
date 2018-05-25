@@ -38,6 +38,8 @@ class Home extends React.Component{
                         getDungeons={(profile) => profile.mythic_plus_best_runs}
                         dungeonOrder={this.props.raiderIo.dungeonOrder}
                         characters={this.props.raiderIo.characters}
+                        sortByDungeon={this.props.sortByDungeon}
+                        sortByChar={this.props.sortByChar}
                     />
                 </div>
             </div>
