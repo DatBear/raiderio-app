@@ -6,7 +6,8 @@ export default class DungeonRow extends React.Component {
     }
 
     sortByDungeon(){
-        this.props.sortByDungeon(this.props.dungeon);
+        console.log('sortbydungeon()', this.props.dungeon);
+        this.props.sortByDungeon(this.props.dungeon.short_name);
     }
 
     render(){

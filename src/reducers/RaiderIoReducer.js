@@ -34,6 +34,7 @@ function getProfile(state, {region, realm, character}){
 export default (state = defaultState, action) => {
     let { type, payload } = action;
     var characters = CharacterReducer(state.characters, action);
+    state.characters = characters;
 
     switch(type){
         case raiderIo.RAIDERIO_PROFILE_DONE: {
@@ -59,9 +60,22 @@ export default (state = defaultState, action) => {
                     return (dA.score || 0) > (dB.score || 0) ? -1 : 1;
                 });
             }
+            break;
+        }
+        case raiderIo.RAIDERIO_SORT_BY_DUNGEON:{
+            //setting character sort order by dungeon score...
+            console.log('dungeonsort', action.payload);
+            const short_name = action.payload.short_name;
+            console.log('sn',short_name, 'runs', state.profiles[0].mythic_plus_best_runs);
+            var scores = state.profiles.map(p =>({character: p.character, score: p.mythic_plus_best_runs.find(d => {
+                return d.short_name === short_name;
+            })})).sort((a, b) => {
+                return a.score.score > b.score.score ? -1 : 1;
+            });
+            state.characters = state.characters.concat().map(c => ({ ...c, sortOrder: scores.findIndex(x => c.name === x.character.name) }) )
         }
         default:
             break;
     }
-    return {...state, characters};
+    return {...state};
 }
