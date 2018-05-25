@@ -31,7 +31,7 @@ export default (state = defaultState, action) => {
             console.log('RAIDERIO_PROFILE_DONE payload:', action.payload);
             state = {
                 ...state, 
-                profiles: state.profiles.filter(p => !(p.region === region && p.realm === realm && p.character === character)).concat(action.payload)
+                profiles: state.profiles.filter(p => !(p.region === region && p.realm === realm && p.character === character)).concat(action.payload.data)
             };
             return state;
             break;

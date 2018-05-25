@@ -6,14 +6,14 @@ import DungeonScore from './DungeonScore';
 
 
 export default class DungeonList extends React.Component {
-    characterSortOrder({region, realm, name}){
-        var filtered = this.props.characters.filter(char => char.region === region && char.realm === realm && char.name === name);
+    characterSortOrder(region, realm, name){
+        var filtered = this.props.characters && this.props.characters.filter(char => char.region === region && char.realm === realm && char.name === name);
         if(filtered.length === 1) return filtered[0].sortOrder;
         return 0;
     }
 
     characterSort(a, b){
-        return this.characterSortOrder(a.character) < this.characterSortOrder(b.character) ? -1 : 1;
+        return this.characterSortOrder(a.character.region, a.character.realm, a.character.name) < this.characterSortOrder(b.character.region, b.character.realm, b.character.name) ? -1 : 1;
     }
 
     sortByCharacter(char){
@@ -38,7 +38,7 @@ export default class DungeonList extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {dungeonOrder.map((dungeon, dIdx) => (
+                        {dungeons && dungeonOrder.map((dungeon, dIdx) => (
                             <DungeonRow key={dIdx} dungeon={dungeon} sortByDungeon={this.props.sortByDungeon}>
                                 {dungeons.map((dungeonList, dlIdx) => (
                                     dungeonList.filter(d => d.short_name == dungeon.short_name).map((dungeonScore, dSIdx) => (

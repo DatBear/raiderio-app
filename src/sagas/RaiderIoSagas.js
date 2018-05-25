@@ -7,12 +7,12 @@ function delay(ms) {
 } 
 
 function* getProfile(payload) {
-    const { region, realm, character } = payload;
+    const { region, realm, name } = payload;
     try {
-        const res = yield RaiderIoService.GetProfile(region, realm, character);
-        yield put(actions.profileDone(region,realm,character, res.data));
+        const res = yield RaiderIoService.GetProfile(region, realm, name);
+        yield put(actions.profileDone(region,realm,name, res.data));
     } catch(e){
-        yield put(actions.profileError(region,realm,character, e.message));
+        yield put(actions.profileError(region,realm,name, e.message));
     }
 }
 
