@@ -4,18 +4,20 @@ import DungeonRow from './DungeonRow';
 import DungeonScore from './DungeonScore';
 
 export default class DungeonList extends React.Component {
-    characterSortOrder(region, realm, name){
+    characterSortOrder({region, realm, name}){
         var filtered = this.props.characters.filter(char => char.region === region && char.realm === realm && char.name === name);
         if(filtered.length === 1) return filtered[0].sortOrder;
         return 0;
     }
 
+    characterSort(a, b){
+        return this.characterSortOrder(a.character) < this.characterSortOrder(b.character) ? -1 : 1;
+    }
+
     render(){
         var dungeonOrder = this.props.dungeonOrder;
-        var dungeons = this.props.profiles && this.props.profiles.map(this.props.getDungeons);
-        var sortedProfiles = this.props.profiles && this.props.profiles.sort((a, b) => {
-            return this.characterSortOrder(...a.character) < this.characterSortOrder(...b.character) ? -1 : 1;
-        })
+        var dungeons = this.props.profiles && this.props.profiles.sort(this.characterSort.bind(this)).map(this.props.getDungeons);
+        var sortedProfiles = this.props.profiles && this.props.profiles.sort(this.characterSort.bind(this))
         console.log('dungeonOrder', dungeonOrder);
         console.log('profiles', sortedProfiles);
         console.log('dungeons', dungeons);
