@@ -14,7 +14,7 @@ export default class DungeonRow extends React.Component {
         const stars = this.props.dungeon.num_keystone_upgrades;
         return(
             <tr className="dungeon">
-                <td onClick={this.sortByDungeon.bind(this)}><img src={`/img/dungeon/${this.props.dungeon.short_name}.jpg`} alt="" className="img-dungeon"/>{this.props.dungeon.dungeon}</td>
+                <td onClick={this.sortByDungeon.bind(this)}><img src={`img/dungeon/${this.props.dungeon.short_name}.jpg`} alt="" className="img-dungeon"/>{this.props.dungeon.dungeon}</td>
                 {this.props.children}
             </tr>
         );

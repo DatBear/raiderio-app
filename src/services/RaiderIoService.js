@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiBase = "http://localhost/raiderio/api";
+const apiBase = "http://datbear.com/raiderio/api";
 
 export class RaiderIoService {
     GetProfile(region, realm, character){
