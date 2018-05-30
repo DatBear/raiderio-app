@@ -1,4 +1,4 @@
-import * as raiderIo from '../actions/raiderIoActions';
+import actions from '../actions';
 import CharacterReducer from './CharacterReducer';
 
 const defaultState = {
@@ -37,7 +37,7 @@ export default (state = defaultState, action) => {
     state.characters = characters;
 
     switch(type){
-        case raiderIo.RAIDERIO_PROFILE_DONE: {
+        case actions.RAIDERIO_PROFILE_DONE: {
             const {region, realm, character, data} = action.payload;
             state = {
                 ...state, 
@@ -46,10 +46,20 @@ export default (state = defaultState, action) => {
             return state;
             break;
         }
-        case raiderIo.RAIDERIO_PROFILES_DONE: {
+        case actions.RAIDERIO_PROFILES_DONE: {
             state.profiles = action.payload;
         }
-        case raiderIo.RAIDERIO_SORT_BY_CHAR:{
+
+        case actions.CHARACTER_REMOVE: {
+            const {region, realm, name} = action.payload;
+            state = {
+                ...state,
+                profiles: state.profiles.filter(p => !(p.character.region === region && p.character.realm === realm && p.character.name === name))
+            };
+            return state;
+        }
+        
+        case actions.RAIDERIO_SORT_BY_CHAR:{
             const {region, realm, character} = action.payload;
             const profile = getProfile(state, action.payload);
             if(profile != null){
@@ -62,7 +72,7 @@ export default (state = defaultState, action) => {
             }
             break;
         }
-        case raiderIo.RAIDERIO_SORT_BY_DUNGEON:{
+        case actions.RAIDERIO_SORT_BY_DUNGEON:{
             //setting character sort order by dungeon score...
             console.log('dungeonsort', action.payload);
             const short_name = action.payload.short_name;
