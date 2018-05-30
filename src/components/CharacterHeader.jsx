@@ -12,7 +12,8 @@ export default class CharacterHeader extends React.Component {
 
     render(){
         return(
-                <th onClick={this.sortByCharacter.bind(this)}>{this.props.profile.name} {this.props.profile.server}</th>
+                <th className={'color-'+this.props.profile.class.toLowerCase().replace(' ', '')} 
+                    onClick={this.sortByCharacter.bind(this)}>{this.props.profile.name} {this.props.profile.server}</th>
         );
     }
 }

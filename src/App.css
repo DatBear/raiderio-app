@@ -40,3 +40,52 @@
 .fs6{
   font-size: 6px;
 }
+
+
+.color-warrior{
+  color: rgb(199, 156, 110);
+}
+
+.color-paladin{
+  color: rgb(245, 140, 186);
+}
+
+.color-hunter{
+  color: rgb(171, 212, 115);
+}
+
+.color-rogue{
+  color: rgb(255, 245, 105);
+}
+
+.color-priest{
+  color: rgb(255, 255, 255);
+}
+
+.color-deathknight{
+  color: rgb(196, 31, 59);
+}
+
+.color-shaman{
+  color: rgb(0, 112, 222);
+}
+
+.color-mage{
+  color: rgb(105, 204, 240);
+}
+
+.color-warlock{
+  color: rgb(148, 130, 201);
+}
+
+.color-monk{
+  color: rgb(0, 255, 150);
+}
+
+.color-druid{
+  color: rgb(255, 125, 10);
+}
+
+.color-demonhunter{
+  color: rgb(163, 48, 201);
+}
