@@ -25,9 +25,22 @@ export default class CharacterList extends React.Component{
     }
 
     addCharacter(e){
-        this.setState({newRealm: '', newName: ''})
         this.props.addCharacter(this.state.newRegion, this.state.newRealm, this.state.newName);
+        this.setState({newRealm: '', newName: ''})
     }
+
+    onEnterKey(e){
+        this.props.addCharacter(this.state.newRegion, this.state.newRealm, this.state.newName);
+        this.setState({newRealm: '', newName: ''})
+    }
+
+    _handleKeyPress(e) {
+        if(e.key === 'Enter'){
+            this.onEnterKey(e);
+        }
+    }
+
+    
 
     render(){
         return(
@@ -61,7 +74,7 @@ export default class CharacterList extends React.Component{
                         <input className="form-control form-control-sm" placeholder="Name" value={this.state.newName} onChange={this.handleInputChange('newName')} />
                     </div>
                     <div className="col-sm-4">
-                        <input className="form-control form-control-sm" placeholder="Realm" value={this.state.newRealm} onChange={this.handleInputChange('newRealm')} />
+                        <input className="form-control form-control-sm" placeholder="Realm" value={this.state.newRealm} onChange={this.handleInputChange('newRealm')} onKeyPress={this._handleKeyPress.bind(this)} />
                     </div>
                     <div className="col-sm-1">
                         <button className="btn btn-sm btn-success" onClick={this.addCharacter.bind(this)}><i className="fas fa-user-plus"></i></button>
