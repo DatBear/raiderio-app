@@ -28,7 +28,7 @@ export default class DungeonList extends React.Component {
         //console.log('profiles', sortedProfiles);
         //console.log('dungeons', dungeons);
         return(
-            <div className="col-sm-6 dungeon-list-container">
+            <div className="col-sm-12 dungeon-list-container">
                 <table className="table table-striped table-hover table-condensed table-bordered">
                     <thead>
                         <tr>
