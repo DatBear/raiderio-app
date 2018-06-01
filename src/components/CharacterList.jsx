@@ -44,7 +44,7 @@ export default class CharacterList extends React.Component{
 
     render(){
         return(
-            <div className="col-sm-8">
+            <div className="col-sm-12">
                 <h4>Characters</h4>
                 <div className="row">
                 <div className="col-sm-12" style={{marginBottom:10}}>
@@ -54,18 +54,18 @@ export default class CharacterList extends React.Component{
                 </div>
                 </div>
                 <div className="row characters-header">
-                    <div className="col-sm-3 col-2">Region</div>
+                    <div className="col-sm-2 col-2">Region</div>
                     <div className="col-sm-4 col-4">Name</div>
                     <div className="col-sm-4 col-4">Realm</div>
-                    <div className="col-sm-1 col-2"></div>
+                    <div className="col-sm-2 col-2"></div>
                 </div>
                 {this.props.characters && this.props.characters.map((char, i) => (
                     <Character key={i} region={char.region} realm={char.realm} name={char.name}
                     removeCharacter={this.props.removeCharacter} />
                 ))}
                 <div className="row new-character">
-                    <div className="col-sm-3 col-3">
-                        <select className="custom-select custom-select-sm" value={this.state.newRegion} onChange={this.handleInputChange('newRegion')}>
+                    <div className="col-sm-2 col-3">
+                        <select className="form-control form-control-sm" value={this.state.newRegion} onChange={this.handleInputChange('newRegion')}>
                             <option value="us">US</option>
                             <option value="eu">EU</option>
                         </select>

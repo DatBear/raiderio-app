@@ -89,3 +89,7 @@
 .color-demonhunter{
   color: rgb(163, 48, 201);
 }
+
+body{
+  padding-top:60px;
+}
