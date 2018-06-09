@@ -21,12 +21,9 @@ export default class DungeonList extends React.Component {
     }
 
     render(){
-        var dungeonOrder = this.props.dungeonOrder;
-        var dungeons = this.props.profiles && this.props.profiles.sort(this.characterSort.bind(this)).map(this.props.getDungeons);
+        var dungeonOrders = this.props.dungeonOrder;
+        var profileDungeons = this.props.profiles && this.props.profiles.sort(this.characterSort.bind(this)).map(this.props.getDungeons);
         var sortedProfiles = this.props.profiles && this.props.profiles.sort(this.characterSort.bind(this))
-        //console.log('dungeonOrder', dungeonOrder);
-        //console.log('profiles', sortedProfiles);
-        //console.log('dungeons', dungeons);
         return(
             <div className="col-sm-12 dungeon-list-container">
                 <h4>Dungeons</h4>
@@ -38,13 +35,12 @@ export default class DungeonList extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {dungeons && dungeonOrder.map((dungeon, dIdx) => (
-                            <DungeonRow key={dIdx} dungeon={dungeon} sortByDungeon={this.props.sortByDungeon}>
-                                {dungeons.map((dungeonList, dlIdx) => (
-                                    dungeonList.filter(d => d.short_name == dungeon.short_name).map((dungeonScore, dSIdx) => (
-                                        <DungeonScore key={dSIdx} dungeon={dungeonScore}/>
-                                    ))
-                                ))}
+                        {profileDungeons && dungeonOrders.map((dungeonOrder, dIdx) => (
+                            <DungeonRow key={dIdx} dungeon={dungeonOrder} sortByDungeon={this.props.sortByDungeon}>
+                                {profileDungeons.map((profileDungeonList, dlIdx) => {
+                                    let dungeonScore = profileDungeonList.find(d => d.short_name == dungeonOrder.short_name);
+                                    return dungeonScore && <DungeonScore key={dlIdx} dungeon={dungeonScore}/> || <td key={dlIdx}></td>;
+                            })}
                             </DungeonRow>
                         ))}
                     </tbody>

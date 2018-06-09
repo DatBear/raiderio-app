@@ -80,7 +80,7 @@ export default (state = defaultState, action) => {
             var scores = state.profiles.map(p =>({character: p.character, score: p.mythic_plus_best_runs.find(d => {
                 return d.short_name === short_name;
             })})).sort((a, b) => {
-                return a.score.score > b.score.score ? -1 : 1;
+                return a && b && a.score && b.score && a.score.score > b.score.score ? -1 : 1;
             });
             state.characters = state.characters.concat().map(c => ({ ...c, sortOrder: scores.findIndex(x => c.name === x.character.name) }) )
         }
